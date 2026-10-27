@@ -6,7 +6,6 @@ interface Profile {
 	minHeight: number;
 	maxHeightRatio: number;
 	maxHeight: number;
-	extraHeight: number;
 	fitMode: 'width' | 'contain';
 	padding: number;
 }
@@ -160,20 +159,18 @@ export class MermaidZoomInstance {
 		const narrow = this.container.clientWidth < 640;
 		if (this.diagramKind === 'sequence') {
 			return {
-				minHeight: narrow ? 320 : 300,
+				minHeight: 120,
 				maxHeightRatio: 0.78,
 				maxHeight: 900,
-				extraHeight: 104,
 				fitMode: 'width',
 				padding: narrow ? 18 : 36,
 			};
 		}
 
 		return {
-			minHeight: narrow ? 260 : 220,
+			minHeight: 120,
 			maxHeightRatio: 0.72,
 			maxHeight: 760,
-			extraHeight: 72,
 			fitMode: 'contain',
 			padding: narrow ? 18 : 32,
 		};
@@ -382,10 +379,12 @@ export class MermaidZoomInstance {
 		if (!bounds.width || !bounds.height || !width) return;
 		if (this.container.dataset.mfzAutoHeight && Math.abs(width - this.lastAutoWidth) < 2) return;
 
+		// Hug the diagram at the scale reset() will draw it: fitted to the width, never enlarged.
 		const profile = this.getProfile();
-		const aspectHeight = width * (bounds.height / bounds.width);
+		const scale = Math.min(Math.max(1, width - profile.padding * 2) / bounds.width, 1);
+		const contentHeight = bounds.height * scale + profile.padding * 2;
 		const maxHeight = Math.min(window.innerHeight * profile.maxHeightRatio, profile.maxHeight);
-		const nextHeight = Math.round(clamp(aspectHeight + profile.extraHeight, profile.minHeight, maxHeight));
+		const nextHeight = Math.round(clamp(contentHeight, profile.minHeight, maxHeight));
 
 		this.container.setCssStyles({ height: `${nextHeight}px` });
 		this.container.dataset.mfzAutoHeight = 'true';

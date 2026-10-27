@@ -3,7 +3,7 @@
   position: relative;
   width: 100%;
   min-width: 240px;
-  min-height: 220px;
+  min-height: 120px;
   height: auto;
   max-height: 72vh;
   margin: 0.75rem 0;
@@ -172,15 +172,4 @@ body.mfz-fullscreen-open {
 .mfz-help p {
   margin: 8px 0 0;
   color: var(--text-muted);
-}
-
-@media (max-width: 640px) {
-  .mfz-container {
-    min-height: 260px;
-    height: auto;
-  }
-}
-
-.mfz-container.mfz-kind-sequence {
-  min-height: 300px;
 }
