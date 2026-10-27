@@ -1,15 +1,15 @@
 # Mermaid Flow Zoom
 
-Mermaid Flow Zoom improves rendered Mermaid diagrams in Obsidian with zooming, panning, resizing, and fullscreen viewing.
+Mermaid Flow Zoom improves rendered Mermaid diagrams in Obsidian with zooming, panning, and fullscreen viewing.
 
 ## Features
 
+- Click a diagram to focus it; zooming and panning only work while it is focused, so scrolling the note is never hijacked. Click outside or press `Esc` to release it.
 - Mouse wheel zooms around the pointer.
 - Drag to pan the diagram.
 - Trackpad horizontal scrolling, `Shift` + wheel, or wheel near the left/right edge pans horizontally.
-- Toolbar controls for zoom in, zoom out, reset, and fullscreen.
+- Toolbar controls for zoom in, zoom out, reset, fullscreen, and a `?` help popover listing all controls.
 - Reset and first render fit the complete Mermaid SVG proportionally and center it in the container.
-- Desktop container resizing from the lower-right corner.
 - Mobile one-finger pan and two-finger pinch zoom.
 - Works with dynamically rendered Mermaid diagrams in Reading view and Live Preview where Obsidian exposes rendered SVGs.
 
@@ -65,3 +65,8 @@ The release tag must exactly match the `version` in `manifest.json`, for example
 ## License
 
 MIT
+
+## Links
+
+- https://community.obsidian.md/plugins/mermaid-flow-zoom
+- https://github.com/Change-Wyc/mermaid-flow-zoom/tree/main
