@@ -1,4 +1,4 @@
-import { EDGE_SCROLL_ZONE, HELP_ITEMS, MAX_SCALE, MIN_SCALE, ZOOM_STEP } from './constants';
+import { EDGE_SCROLL_ZONE, HELP_ITEMS, MAX_SCALE, MIN_SCALE, TOOLBAR_CLEARANCE, ZOOM_STEP } from './constants';
 
 type DiagramKind = 'sequence' | 'flowchart' | 'class' | 'state' | 'timeline' | 'generic';
 
@@ -382,7 +382,7 @@ export class MermaidZoomInstance {
 		// Hug the diagram at the scale reset() will draw it: fitted to the width, never enlarged.
 		const profile = this.getProfile();
 		const scale = Math.min(Math.max(1, width - profile.padding * 2) / bounds.width, 1);
-		const contentHeight = bounds.height * scale + profile.padding * 2;
+		const contentHeight = bounds.height * scale + Math.max(profile.padding, TOOLBAR_CLEARANCE) + profile.padding;
 		const maxHeight = Math.min(window.innerHeight * profile.maxHeightRatio, profile.maxHeight);
 		const nextHeight = Math.round(clamp(contentHeight, profile.minHeight, maxHeight));
 
@@ -406,8 +406,9 @@ export class MermaidZoomInstance {
 
 		const profile = this.getProfile();
 		const padding = profile.padding;
+		const top = Math.max(padding, TOOLBAR_CLEARANCE);
 		const availableWidth = Math.max(1, viewport.width - padding * 2);
-		const availableHeight = Math.max(1, viewport.height - padding * 2);
+		const availableHeight = Math.max(1, viewport.height - top - padding);
 		const widthScale = availableWidth / bounds.width;
 		const containScale = Math.min(widthScale, availableHeight / bounds.height, 1);
 		const sequenceScale = Math.min(widthScale, 1);
@@ -416,10 +417,11 @@ export class MermaidZoomInstance {
 		this.scale = clamp(scale, MIN_SCALE, MAX_SCALE);
 		const scaledHeight = bounds.height * this.scale;
 		this.x = (viewport.width - bounds.width * this.scale) / 2 - bounds.x * this.scale;
-		// Width-fitted diagrams taller than the viewport start at the top; everything else is centered.
+		// Width-fitted diagrams taller than the viewport start at the top; everything else is centered
+		// in the area below the toolbar.
 		this.y = scaledHeight > availableHeight
-			? padding - bounds.y * this.scale
-			: (viewport.height - scaledHeight) / 2 - bounds.y * this.scale;
+			? top - bounds.y * this.scale
+			: top + (availableHeight - scaledHeight) / 2 - bounds.y * this.scale;
 		this.initialFit = { scale: this.scale, x: this.x, y: this.y };
 		this.apply();
 	}
