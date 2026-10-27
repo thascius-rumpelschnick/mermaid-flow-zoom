@@ -3,6 +3,7 @@
 	"version": "1.0.1",
 	"description": "Zoom, pan, and fullscreen rendered Mermaid diagrams.",
 	"main": "main.js",
+	"author": "Florian Zapf",
 	"type": "module",
 	"scripts": {
 		"dev": "node esbuild.config.mjs",

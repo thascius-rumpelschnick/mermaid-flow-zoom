@@ -4,7 +4,7 @@
   "version": "1.0.1",
   "minAppVersion": "1.5.0",
   "description": "Zoom, pan, and fullscreen rendered Mermaid diagrams.",
-  "author": "Change-Wyc",
-  "authorUrl": "https://github.com/Change-Wyc",
+  "author": "Florian Zapf",
+  "authorUrl": "https://github.com/thascius-rumpelschnick",
   "isDesktopOnly": false
 }

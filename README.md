@@ -15,18 +15,25 @@ Mermaid Flow Zoom improves rendered Mermaid diagrams in Obsidian with zooming, p
 
 ## Installation
 
-### Community plugin directory
+This fork isn't in the Obsidian community plugin directory. Searching there for `Mermaid Flow Zoom` installs the original plugin, not this fork. Both use the id `mermaid-flow-zoom`, so only one of them can be installed in a vault.
 
-After the plugin is accepted into the Obsidian community plugin directory:
+### From source
 
-1. Open Obsidian Settings.
-2. Go to Community plugins.
-3. Search for `Mermaid Flow Zoom`.
-4. Install and enable the plugin.
+Requires Node.js and pnpm.
 
-### Manual installation
+```sh
+cd <vault>/.obsidian/plugins
+git clone https://github.com/thascius-rumpelschnick/mermaid-flow-zoom.git
+cd mermaid-flow-zoom
+pnpm install
+pnpm run build
+```
 
-1. Download `main.js`, `manifest.json`, and `styles.css` from the latest release.
+Then reload Obsidian and enable `Mermaid Flow Zoom` under **Settings → Community plugins**.
+
+### From a release
+
+1. Download `main.js`, `manifest.json`, and `styles.css` from the latest release of [this fork](https://github.com/thascius-rumpelschnick/mermaid-flow-zoom/releases).
 2. Create this folder inside your vault:
 
 ```text
@@ -35,7 +42,7 @@ After the plugin is accepted into the Obsidian community plugin directory:
 
 3. Put the downloaded files in that folder.
 4. Reload Obsidian.
-5. Enable `Mermaid Flow Zoom` in Community plugins.
+5. Enable `Mermaid Flow Zoom` under **Settings → Community plugins**.
 
 ## Usage
 
@@ -66,7 +73,12 @@ The release tag must exactly match the `version` in `manifest.json`, for example
 
 MIT
 
+## Credits
+
+Fork of [Mermaid Flow Zoom](https://github.com/Change-Wyc/mermaid-flow-zoom) by Change-Wyc, maintained by Florian Zapf.
+
 ## Links
 
-- https://community.obsidian.md/plugins/mermaid-flow-zoom
-- https://github.com/Change-Wyc/mermaid-flow-zoom/tree/main
+- Fork: https://github.com/thascius-rumpelschnick/mermaid-flow-zoom
+- Original: https://github.com/Change-Wyc/mermaid-flow-zoom
+- Original in the community plugin directory: https://community.obsidian.md/plugins/mermaid-flow-zoom
