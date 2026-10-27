@@ -61,13 +61,10 @@ After Obsidian renders the diagram, use the mouse, touchpad, toolbar, or touch g
 
 ## Release Checklist
 
-For each GitHub release, attach these files as release assets:
-
-- `main.js`
-- `manifest.json`
-- `styles.css`
-
-The release tag must exactly match the `version` in `manifest.json`, for example `1.0.0`.
+1. Bump `version` in `package.json`, then run `npm_package_version=<version> node version-bump.mjs` to update `manifest.json` and `versions.json`.
+2. Commit, tag the commit with the exact version (no `v` prefix, for example `1.1.0`), and push the tag.
+3. The `Release Obsidian plugin` workflow builds the plugin and creates a draft release with `main.js`, `manifest.json`, and `styles.css` attached.
+4. Review the draft on GitHub and publish it.
 
 ## License
 
